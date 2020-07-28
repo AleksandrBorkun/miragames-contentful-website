@@ -19,6 +19,7 @@ function HomePage() {
   useEffect(() => {
     async function getPosts() {
       const allPosts = await fetchEntries()
+      console.log(JSON.stringify(allPosts))
       setPosts([...allPosts])
     }
     getPosts()
@@ -40,7 +41,7 @@ function HomePage() {
               alt={p.fields.alt}
               date={p.fields.date}
               key={p.fields.title}
-              image={p.fields.image.file}
+              image={p.fields.image.fields.file.url}
               title={p.fields.title}
               url={p.fields.url}
             />
