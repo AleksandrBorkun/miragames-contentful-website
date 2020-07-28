@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Post from '../components/post'
+import TopBar from '../components/topbar'
 
 const client = require('contentful').createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -8,18 +9,17 @@ const client = require('contentful').createClient({
 })
 
 function HomePage() {
-  async function fetchEntries() {
-    const entries = await client.getEntries()
+  async function fetchEntries(param = {}) {
+    const entries = await client.getEntries(param)
     if (entries.items) return entries.items
-    console.log(`Error getting Entries for ${contentType.name}.`)
   }
 
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
     async function getPosts() {
-      const allPosts = await fetchEntries()
-      console.log(JSON.stringify(allPosts))
+      const contentTypes = await client.getContentTypes();
+      const allPosts = await fetchEntries({content_type: contentTypes.items.filter(item => item.name.toLowerCase() === 'postwithimage')[0].sys.id}) //{content_type: id}
       setPosts([...allPosts])
     }
     getPosts()
@@ -35,6 +35,7 @@ function HomePage() {
           type="text/css"
         />
       </Head>
+      <TopBar/>
       {posts.length > 0
         ? posts.map(p => (
             <Post
