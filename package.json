@@ -16,6 +16,8 @@
     "contentful": "^7.14.6",
     "next": "^9.5.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-markdown": "^4.3.1",
+    "semantic-ui-react": "^1.0.0"
   }
 }
