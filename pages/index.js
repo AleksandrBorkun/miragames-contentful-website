@@ -54,9 +54,9 @@ function HomePage() {
                 releaseDate = {games[page - 1].fields.releaseDate}
                 url = {games[page - 1].fields.url}
                 desc = {games[page - 1].fields.desc}
+                slug = {games[page - 1].fields.slug}
                 />      
           <GamesPagination count = {games.length} activePage = {page} handlePaginationChange = {handlePaginationChange}/>
-              
         </>: ""
       }
       </Container>

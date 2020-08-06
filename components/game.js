@@ -34,6 +34,15 @@ const Game = (prop) => (
             </Button.Content>
             </Button>
 
+            <span style={{marginLeft:'20px', marginRight: "20px"}}>
+            <Button onClick = {()=>window.location.href = `${prop.slug}`}animated="fade">
+            <Button.Content visible>Show More!</Button.Content>
+            <Button.Content hidden>
+                <Icon style={{ verticalAlign: "middle" , marginBottom: "10px"}} name='eye' size="big" />
+            </Button.Content>
+            </Button>
+            </span>
+
             <span style={{float:'right'}}>
             <a style = { { position: "absolute", bottom: "50px"}}>
             <Icon name='money' />
