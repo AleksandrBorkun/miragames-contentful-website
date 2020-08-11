@@ -60,18 +60,6 @@ function HomePage() {
         </>: ""
       }
       </Container>
-      {/* {posts.length > 0
-        ? posts.map(p => (
-            <Post
-              alt={p.fields.alt}
-              date={p.fields.date}
-              key={p.fields.title}
-              image={p.fields.image.fields.file.url}
-              title={p.fields.title}
-              url={p.fields.url}
-            />
-          ))
-        : null} */}
     </>
   )
 }

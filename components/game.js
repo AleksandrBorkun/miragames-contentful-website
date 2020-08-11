@@ -1,8 +1,24 @@
 import { Card, Image, Icon, Input, Button} from "semantic-ui-react"
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import ReactMarkdown  from 'react-markdown'
+import { AddToWishlist } from '../utils/fb_init'
 
-const Game = (prop) => (
+
+function  Game (prop){
+        const [email, setEmail] = useState("");
+        const onWishlisted = async (event) =>{
+
+            const regexAllowedEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            if(!email.match(regexAllowedEmail)){
+                alert("Wrong Email Format\nPlease Try AGAIN!");
+                return;
+            }
+            setEmail("");
+            alert(`Thanks!\nNow your email: ${email}. Was submitted for wishlist.\nYou'll Get a notification as soon as game will be published!`);
+            await AddToWishlist(prop.slug, email);
+        }
+
+        return (
         <Card fluid >
         <Image src={prop.image} wrapped ui={false} />
         <Card.Content>
@@ -25,9 +41,9 @@ const Game = (prop) => (
             <div>
             <Input style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Email'>
             <Icon name='at' />
-            <input onChange={(event)=>console.log(event.target.value)}/>
+            <input onChange={(event)=>setEmail(event.target.value)} value={email}/>
             </Input>
-            <Button animated>
+            <Button animated onClick={onWishlisted}>
             <Button.Content visible>Wishlist</Button.Content>
             <Button.Content hidden>
                 <Icon name='bell' />
@@ -61,7 +77,7 @@ const Game = (prop) => (
             </span>
             </div>
         </Card.Content>
-        </Card>
-  )
+        </Card>)
+}
 
 export default Game
