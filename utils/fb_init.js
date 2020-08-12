@@ -15,7 +15,7 @@ var firebaseConfig = {
   // Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+    if('function'  === typeof firebase.analytics) firebase.analytics();
     defaultDatabase = firebase.database();
 }
 
