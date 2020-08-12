@@ -1,4 +1,4 @@
-const firebase = require('firebase');
+import * as firebase from 'firebase';
 
 let defaultDatabase = null;
 
