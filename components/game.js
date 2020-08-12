@@ -1,16 +1,34 @@
-import { Card, Image, Icon, Input, Button} from "semantic-ui-react"
+import { Card, Image, Icon, Input, Button, Grid, GridColumn, Checkbox} from "semantic-ui-react"
 import React, { Component, useState } from 'react'
 import ReactMarkdown  from 'react-markdown'
 import { AddToWishlist } from '../utils/fb_init'
+import DonateButton from "./donateButton";
 
 
 function  Game (prop){
         const [email, setEmail] = useState("");
+        const [donation, setDonation] = useState("");
+        const [isEmailPresent, setCheckboxVisability] = useState(false);
+        const [isChecked, setDecision] = useState(false);
+        
+
+        const onEmailChanged = async (event) =>{
+            setEmail(event.target.value)
+            if(email && email.length > 0){
+                setCheckboxVisability(true);
+            }
+        }
+
         const onWishlisted = async (event) =>{
 
             const regexAllowedEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
             if(!email.match(regexAllowedEmail)){
                 alert("Wrong Email Format\nPlease Try AGAIN!");
+                return;
+            }
+            if(!isChecked){
+                alert("Sorry, we cann't add your email wo wishlist without your permission :)");
+                setCheckboxVisability(true);
                 return;
             }
             setEmail("");
@@ -31,17 +49,14 @@ function  Game (prop){
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <a>
-            <Icon name='user' />
-            22 wishlisted
-            </a>
 
             
 
-            <div>
+            <Grid columns={2}>
+                <GridColumn>
             <Input style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Email'>
             <Icon name='at' />
-            <input onChange={(event)=>setEmail(event.target.value)} value={email}/>
+            <input onChange={onEmailChanged} value={email}/>
             </Input>
             <Button animated onClick={onWishlisted}>
             <Button.Content visible>Wishlist</Button.Content>
@@ -49,7 +64,22 @@ function  Game (prop){
                 <Icon name='bell' />
             </Button.Content>
             </Button>
+            {isEmailPresent ? <Checkbox checked={isChecked} onChange={(event)=>setDecision(!isChecked)}label={`I agree that my email ${email} will be stored and used to share info about ${prop.title} releases`} />: ""}
 
+
+            </GridColumn>
+            <GridColumn>
+            {donation ? <div>
+            <Icon name='money'/>
+            {donation}$ will be contributed
+            </div> : "" }
+            <Input type="number" step="0.01" style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Set Your Price'>
+            <Icon name='dollar sign' />
+            <input onChange={(event)=>setDonation(event.target.value)}/>
+            </Input>
+            <DonateButton slug = {prop.slug} donation = {donation}/>
+            </GridColumn>
+            </Grid>
             <span style={{marginLeft:'20px', marginRight: "20px"}}>
             <Button onClick = {()=>window.location.href = `game/${prop.slug}`}animated="fade">
             <Button.Content visible>Show More!</Button.Content>
@@ -58,24 +88,6 @@ function  Game (prop){
             </Button.Content>
             </Button>
             </span>
-
-            <span style={{float:'right'}}>
-            <a style = { { position: "absolute", bottom: "50px"}}>
-            <Icon name='money' />
-            1,300.05 contributed
-            </a>
-            <Input style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Set Your Price'>
-            <Icon name='dollar sign' />
-            <input onChange={(event)=>console.log(event.target.value)}/>
-            </Input>
-            <Button animated="fade">
-            <Button.Content visible>Buy Cofee For Devs</Button.Content>
-            <Button.Content hidden>
-                <Icon style={{ verticalAlign: "middle" }} name='coffee' size="big" />
-            </Button.Content>
-            </Button>
-            </span>
-            </div>
         </Card.Content>
         </Card>)
 }

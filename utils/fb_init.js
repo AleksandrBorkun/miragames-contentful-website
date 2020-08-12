@@ -23,3 +23,9 @@ export function AddToWishlist(path, email){
   defaultDatabase = defaultDatabase ? defaultDatabase : firebase.database();
   return query.defaultDatabase.ref('wishlist').child(path).push(email, (err) => err ? console.error(err) : "");
 }
+
+export function SaveDonateTransiction(path, reciept_id){
+  console.log('trying to save order ' + reciept_id)
+  defaultDatabase = defaultDatabase ? defaultDatabase : firebase.database();
+  return query.defaultDatabase.ref('donations').child(path).push(reciept_id, (err) => err ? console.error(err) : "");
+}
