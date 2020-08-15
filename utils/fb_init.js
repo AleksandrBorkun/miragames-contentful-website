@@ -1,5 +1,5 @@
-import * as firebase from 'firebase';
-
+import * as firebase from 'firebase/app';
+import 'firebase/database'
 let defaultDatabase = null;
 
 var firebaseConfig = {
@@ -12,20 +12,20 @@ var firebaseConfig = {
   appId: "1:384866867099:web:5ebdb64efc53560d04b33e",
   measurementId: "G-LG1SVYL6Y3"
 };
+
   // Initialize Firebase
   if (!firebase.apps.length) {
+    if('function' === typeof firebase.analytics) firebase.analytics();
     firebase.initializeApp(firebaseConfig);
-    if('function'  === typeof firebase.analytics) firebase.analytics();
-    defaultDatabase = firebase.database();
 }
 
 export function AddToWishlist(path, email){
   defaultDatabase = defaultDatabase ? defaultDatabase : firebase.database();
-  return query.defaultDatabase.ref('wishlist').child(path).push(email, (err) => err ? console.error(err) : "");
+  return defaultDatabase.ref('wishlist').child(path).push(email, (err) => err ? console.error(err) : "");
 }
 
 export function SaveDonateTransiction(path, reciept_id){
   console.log('trying to save order ' + reciept_id)
   defaultDatabase = defaultDatabase ? defaultDatabase : firebase.database();
-  return query.defaultDatabase.ref('donations').child(path).push(reciept_id, (err) => err ? console.error(err) : "");
+  return defaultDatabase.ref('donations').child(path).push(reciept_id, (err) => err ? console.error(err) : "");
 }
