@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {Container, Header, Button, Icon} from 'semantic-ui-react'
+import {Container} from 'semantic-ui-react'
 import Head from 'next/head'
 import Post from '../components/post'
 import TopBar from '../components/topbar'

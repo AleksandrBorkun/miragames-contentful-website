@@ -40,7 +40,7 @@ function  Game (prop){
         <Card fluid >
         <Image src={prop.image} wrapped ui={false} />
         <Card.Content>
-            <Card.Header>{prop.title}</Card.Header>
+            <h1>{prop.title}</h1>
             <Card.Meta>
             <span className='date'>Expected Release Date {prop.releaseDate.split('T')[0]}</span>
             </Card.Meta>

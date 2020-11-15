@@ -1,5 +1,5 @@
 import { Card, Image, Icon, Input, Button, Grid, GridColumn, Checkbox} from "semantic-ui-react"
-import React, { Component, useState } from 'react'
+import React from 'react'
 import ReactMarkdown  from 'react-markdown'
 
 const BlogArticlesPreview = (props) => (
@@ -17,8 +17,8 @@ const BlogArticlesPreview = (props) => (
     <Card.Content extra>
 
         <span style={{marginLeft:'20px', marginRight: "20px"}}>
-        <Button onClick = {()=>window.location.href = `game/${props.slug}`}animated="fade">
-        <Button.Content visible>Show More!</Button.Content>
+        <Button onClick = {()=>window.location.href = `blog/${props.slug}`}animated="fade">
+        <Button.Content middle visible>Show More!</Button.Content>
         <Button.Content hidden>
             <Icon style={{ verticalAlign: "middle" , marginBottom: "10px"}} name='eye' size="big" />
         </Button.Content>

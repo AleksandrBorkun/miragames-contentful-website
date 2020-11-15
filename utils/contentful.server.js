@@ -8,3 +8,8 @@ export async function fetchEntries(param = {}) {
     const entries = await client.getEntries(param)
     if (entries.items) return entries.items
   }
+
+  export async function fetchEntry(id) {
+    const entry = await client.getEntry({id: id})
+    if (entry) return entry
+  }

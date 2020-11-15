@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import {Container, Header, Button, Icon} from 'semantic-ui-react'
+import {Container} from 'semantic-ui-react'
 import Head from 'next/head'
-import Post from '../../components/post'
 import TopBar from '../../components/topbar'
 import BlogArticlesPreview from '../../components/blogAriclesPreview'
 import GamesPagination from '../../components/gamesPagination'
@@ -41,7 +40,7 @@ function HomePage() {
             desc = {articles[page - 1].fields.description} 
             cover = {articles[page - 1].fields.cover.fields.file.url} 
             publishDate = {articles[page - 1].fields.date}
-            id = {articles[page - 1].sys.id}
+            slug = {articles[page - 1].sys.id}
                 />      
           <GamesPagination count = {articles.length} activePage = {page} setPage = {setPage}/>
         </>: ""
