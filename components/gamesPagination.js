@@ -1,6 +1,13 @@
 import { Pagination, Grid, Container } from 'semantic-ui-react'
 
 const GamesPagination = (prop) => {
+    
+  function handlePaginationChange(index){
+    if(index.target.text == '⟨') prop.setPage(parseInt(prop.activePage) - 1)
+    else if(index.target.text == '⟩') prop.setPage(parseInt(prop.activePage) + 1)
+    else prop.setPage(index.target.text)
+  }
+
     console.log(prop.activePage);
     return (
     <Container><Grid columns='equal'>
@@ -9,7 +16,7 @@ const GamesPagination = (prop) => {
             <Pagination
             centered = {"true"}
             activePage={prop.activePage ? prop.activePage : 1 }
-            onPageChange={prop.handlePaginationChange ? prop.handlePaginationChange : ()=>console.log(4) }
+            onPageChange={handlePaginationChange}
             totalPages={prop.count}
             ellipsisItem={null}
             firstItem={null}

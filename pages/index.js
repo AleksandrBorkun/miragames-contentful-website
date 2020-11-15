@@ -5,31 +5,16 @@ import Post from '../components/post'
 import TopBar from '../components/topbar'
 import Game from '../components/game'
 import GamesPagination from '../components/gamesPagination'
+import { fetchEntries } from '../utils/contentful.server'
 
-const client = require('contentful').createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
-})
 
 function HomePage() {
-
-  async function fetchEntries(param = {}) {
-    const entries = await client.getEntries(param)
-    if (entries.items) return entries.items
-  }
-
-  function handlePaginationChange(index){
-    if(index.target.text == '⟨') setPage(parseInt(page) - 1)
-    else if(index.target.text == '⟩') setPage(parseInt(page) + 1)
-    else setPage(index.target.text)
-  }
 
   const [games, setPosts] = useState([])
   const [page=1, setPage] = useState(1)
 
   useEffect(() => {
     async function getGames() {
-      //const contentTypes = await client.getContentTypes();
       const allGames = await fetchEntries({content_type: 'games'}); //contentTypes.items.filter(item => item.name.toLowerCase() === 'postwithimage')[0].sys.id}) //{content_type: id}
       setPosts([...allGames])
     }
@@ -39,7 +24,9 @@ function HomePage() {
   return (
     <>
       <Head>
-        <title>Next.js + Contentful</title>
+        <title>MiraGames - create with love</title>
+        <meta name="google-site-verification" content="CxYFVKB0rzlpagj1tArozXI6JLKxdCbFWltE8gG1kPc" />
+        <meta name="description" content={`Welcome to MiraGames site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets.`} />
         <link 
           rel = "stylesheet" 
           href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css" 
@@ -56,7 +43,7 @@ function HomePage() {
                 desc = {games[page - 1].fields.desc}
                 slug = {games[page - 1].fields.slug}
                 />      
-          <GamesPagination count = {games.length} activePage = {page} handlePaginationChange = {handlePaginationChange}/>
+          <GamesPagination count = {games.length} activePage = {page} setPage={setPage}/>
         </>: ""
       }
       </Container>
