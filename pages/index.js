@@ -25,7 +25,7 @@ function HomePage() {
     <>
       <Head>
         <title>MiraGames - create with love</title>
-        <meta name="google-site-verification" content="CxYFVKB0rzlpagj1tArozXI6JLKxdCbFWltE8gG1kPc" />
+        <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
         <meta name="description" content={`Welcome to MiraGames site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets.`} />
         <link 
           rel = "stylesheet" 
