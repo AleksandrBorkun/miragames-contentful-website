@@ -31,12 +31,13 @@ function HomePage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://miragamesstudio.com/" />
         <meta property="og:image" content="https://images.ctfassets.net/gmfhtos0wyy5/1l32ZJBXeT7emjFg6QY6qA/9acd456888f9f089b48c3f6e5e6c98d4/photo_2020-08-06_09-42-08.jpg" />
-        <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
         <meta name="description" content={`Welcome to MiraGames site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets.`} />
         <link 
           rel = "stylesheet" 
           href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css" 
           type="text/css"/>
+        <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
+        <link rel="shortcut icon" href="/icon.ico" />
       </Head>  
       <Container  style={{ margin: 20 }}>
       <TopBar/>

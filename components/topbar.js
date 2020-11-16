@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Input, Menu , Grid} from 'semantic-ui-react'
 
 export default class TopBar extends Component {
-    state = { activeItem: this.props.activeItem || 'home' }
-  
+
     handleItemClick = (e, { name }) => {
       this.setState({ activeItem: name })
-      console.log(window.location.href)
       if(name === 'home' && window.location.pathname !== '/'){
         location.href = '/'
       }else if(name === 'blog' && window.location.pathname !== '/about'){
@@ -15,13 +13,13 @@ export default class TopBar extends Component {
     }
   
     render() {
-      const { activeItem } = this.state
-  
+      const { activeItem, breadcrumb } = this.props
+
       return (
         <Menu secondary>
           <Menu.Item
             name='home'
-            active={activeItem === 'home'}
+            active={!activeItem && !breadcrumb}
             onClick={this.handleItemClick}
           />
           <Menu.Item
@@ -29,11 +27,15 @@ export default class TopBar extends Component {
             active={activeItem === 'blog'}
             onClick={this.handleItemClick}
           />
-          <Menu.Menu position='right'>
+          {breadcrumb && <Menu.Item
+            name={breadcrumb}
+            active
+          />}
+          {/* <Menu.Menu position='right'>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
-          </Menu.Menu>
+          </Menu.Menu> */}
         </Menu>
       )
     }
