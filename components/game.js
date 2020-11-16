@@ -68,8 +68,14 @@ function  Game (prop){
 
 
             </GridColumn>
-            <GridColumn>
-            {donation ? <div>
+            <GridColumn textAlign={'right'}>
+            <Button onClick = {()=> alert('Sorry, no content yet.\nPlease Check our Blog, and dont forget to wishlist the game :)')} animated="fade">
+            <Button.Content visible>Show More!</Button.Content>
+            <Button.Content hidden>
+                <Icon style={{ verticalAlign: "middle" , marginBottom: "10px"}} name='eye' size="big" />
+            </Button.Content>
+            </Button>
+            {/* {donation ? <div>
             <Icon name='money'/>
             {donation}$ will be contributed
             </div> : "" }
@@ -77,16 +83,11 @@ function  Game (prop){
             <Icon name='dollar sign' />
             <input onChange={(event)=>setDonation(event.target.value)}/>
             </Input>
-            <DonateButton slug = {prop.slug} donation = {donation}/>
+            <DonateButton slug = {prop.slug} donation = {donation}/> */}
             </GridColumn>
             </Grid>
-            <span style={{marginLeft:'20px', marginRight: "20px"}}>
-            <Button onClick = {()=>window.location.href = `game/${prop.slug}`}animated="fade">
-            <Button.Content visible>Show More!</Button.Content>
-            <Button.Content hidden>
-                <Icon style={{ verticalAlign: "middle" , marginBottom: "10px"}} name='eye' size="big" />
-            </Button.Content>
-            </Button>
+            <span style={{margin: '20px 40%'}}>
+
             </span>
         </Card.Content>
         </Card>)
