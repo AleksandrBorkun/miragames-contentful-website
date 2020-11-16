@@ -22,14 +22,14 @@ const BlogArticle = () => {
     const [article, setArticle] = useState({})
 
     useEffect(() => {
-        console.log(typeof slug)
+        console.log(slug)
         async function getArticle() {
             const entry = await fetchEntry(slug)
             console.log(entry)
             setArticle(entry.items[0].fields)
         }
-        getArticle();
-    }, [])
+        if(slug)getArticle();
+    },[slug])
 
     return article ? (
         <>
