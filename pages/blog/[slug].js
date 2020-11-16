@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import ReactMarkdown from 'react-markdown'
-import { Card, Image, Icon, Input, Button, Grid, GridColumn, Checkbox, Container } from "semantic-ui-react"
+import { Image, Container } from "semantic-ui-react"
 
 import styled from 'styled-components'
 import { fetchEntry } from '../../utils/contentful.server'
@@ -25,7 +25,8 @@ const BlogArticle = () => {
         console.log(typeof slug)
         async function getArticle() {
             const entry = await fetchEntry(slug)
-            setArticle(entry.fields)
+            console.log(entry)
+            setArticle(entry.items[0].fields)
         }
         getArticle();
     }, [])
@@ -63,7 +64,7 @@ const ArticleContent = ({ title, description, content, cover }) => (<main>
         <Image  src={cover ? cover.fields.file.url : ''}  fluid={true} />
     </ImageWrapper> */}
     {content && <ContentHolder>
-        {content.map((block, key) => {
+        {content?.map((block, key) => {
             return block.sys.contentType.sys.id === 'paragraph' ?
                 <ReactMarkdown key={key} source={block.fields.content} />
                 :
