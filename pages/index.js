@@ -39,7 +39,7 @@ function HomePage() {
         <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
         <link rel="shortcut icon" href="/icon.ico" />
       </Head>  
-      <Container  style={{ margin: 20 }}>
+      <Container>
       <TopBar/>
       {games.length > 0 ?
         <>

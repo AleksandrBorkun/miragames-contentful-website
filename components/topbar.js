@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from 'react'
 import { Input, Menu , Grid} from 'semantic-ui-react'
+import { Title } from './styled/elements'
 
 export default class TopBar extends Component {
 
@@ -15,7 +16,7 @@ export default class TopBar extends Component {
     render() {
       const { activeItem, breadcrumb } = this.props
 
-      return (
+      return (<>
         <Menu secondary>
           <Menu.Item
             name='home'
@@ -37,6 +38,7 @@ export default class TopBar extends Component {
             </Menu.Item>
           </Menu.Menu> */}
         </Menu>
+        <Title> MiraGames - Create With Love</Title></>
       )
     }
   }

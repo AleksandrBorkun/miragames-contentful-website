@@ -2,16 +2,18 @@ import { Card, Image, Icon, Button} from "semantic-ui-react"
 import React from 'react'
 import ReactMarkdown  from 'react-markdown'
 
+import {H2} from '../components/styled/elements'
+
 const BlogArticlesPreview = (props) => (
     <Card fluid >
     <Card.Content>
-        <Card.Header textAlign = {'center'}>{props.title}</Card.Header>
+        <H2 center>{props.title}</H2>
         <Card.Description>
-            <Image src={props.cover} fluid/>
             <ReactMarkdown source={props.desc}/>
+            <Image src={props.cover} fluid/>
         </Card.Description>
         <Card.Meta  textAlign = {'right'}>
-        <span className='date'>Published {props.publishDate.split('T')[0]}</span>
+            <span className='date'>Published {props.publishDate.split('T')[0]}</span>
         </Card.Meta>
     </Card.Content>
     <Card.Content extra>
