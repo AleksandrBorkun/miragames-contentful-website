@@ -1,5 +1,4 @@
-import * as firebase from 'firebase/app';
-import 'firebase/database'
+import firebase from 'firebase';
 let defaultDatabase = null;
 
 var firebaseConfig = {
@@ -15,8 +14,8 @@ var firebaseConfig = {
 
   // Initialize Firebase
   if (!firebase.apps.length) {
-    if('function' === typeof firebase.analytics) firebase.analytics();
     firebase.initializeApp(firebaseConfig);
+    if('function' === typeof firebase.analytics) {firebase.analytics();}
 }
 
 export function AddToWishlist(path, email){
