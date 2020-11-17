@@ -38,7 +38,7 @@ export default class TopBar extends Component {
             </Menu.Item>
           </Menu.Menu> */}
         </Menu>
-        <Title> MiraGames - Create With Love</Title></>
+        <Title> Mira Games - Create With Love</Title></>
       )
     }
   }

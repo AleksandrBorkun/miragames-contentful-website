@@ -34,19 +34,13 @@ const BlogArticle = () => {
     return article ? (
         <>
             <Head>
-                <title>Learn game development with MiraGames blog</title>
+                <title>Learn game development with Mira Games blog</title>
                 <meta name="description" content={article?.description} />
                 <meta property="og:title" content={article?.title} />
                 <meta property="og:description" content={article?.description} />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={`https://miragamesstudio.com/blog/${slug}`} />
                 <meta property="og:image" content={article?.cover?.fields.file.url} />
-
-                <link rel="shortcut icon" href="/icon.ico" />
-                <link
-                    rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
-                    type="text/css" />
             </Head>
             <Container style={{ margin: 20 }}>
             <TopBar breadcrumb={article.title || "Article"}/>

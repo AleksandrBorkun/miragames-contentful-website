@@ -23,18 +23,13 @@ function HomePage() {
   return (
     <>
       <Head>
-        <title>MiraGames - Blog</title>
-        <meta name="description" content="Learn game development with MiraGames blog" />
-                <meta property="og:title" content="Game development blog" />
-                <meta property="og:description" content="Learn game development with MiraGames blog" />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`https://miragamesstudio.com/blog`} />
-                <meta property="og:image" content={"https://images.ctfassets.net/gmfhtos0wyy5/1l32ZJBXeT7emjFg6QY6qA/9acd456888f9f089b48c3f6e5e6c98d4/photo_2020-08-06_09-42-08.jpg"} />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
-          type="text/css" />
-        <link rel="shortcut icon" href="/icon.ico" />
+        <title>Mira Games - Blog</title>
+        <meta name="description" content="Learn game development with Mira Games blog" />
+        <meta property="og:title" content="Game development blog" />
+        <meta property="og:description" content="Learn game development with Mira Games blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://miragamesstudio.com/blog`} />
+        <meta property="og:image" content={"https://images.ctfassets.net/gmfhtos0wyy5/1l32ZJBXeT7emjFg6QY6qA/9acd456888f9f089b48c3f6e5e6c98d4/photo_2020-08-06_09-42-08.jpg"} />
       </Head>
       <Container style={{ margin: 20 }}>
         <TopBar activeItem='blog' />
