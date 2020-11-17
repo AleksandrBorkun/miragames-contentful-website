@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import '../utils/fb_init'
 
 export default class MyDocument extends Document {
   render() {
