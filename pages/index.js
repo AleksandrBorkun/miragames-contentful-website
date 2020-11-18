@@ -24,8 +24,8 @@ function HomePage() {
   return (
     <>
       <Head>
-        <title>Mira Games - Create With Love</title>
-        <meta property="og:title" content="Mira Games - Create With Love" />
+        <title>Mira Games - Games we Love</title>
+        <meta property="og:title" content="Mira Games - Games we Love" />
         <meta property="og:description" 
             content="Welcome to Mira Games site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets." />
         <meta property="og:type" content="website" />

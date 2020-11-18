@@ -1,0 +1,5 @@
+export const CREAMY = '#F2DAAC'
+export const YELLOW = '#F2CD5E'
+export const CORAL = '#D9644A'
+export const BLUE = '#95BBBF'
+export const RED = '#A6686E'
