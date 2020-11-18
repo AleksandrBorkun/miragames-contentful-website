@@ -1,36 +1,115 @@
 import Head from "next/head"
-import { Container, Icon, Image, Input,Button } from "semantic-ui-react"
+import { Container, Image} from "semantic-ui-react"
 
-import BaseLayout from '../../components/layout'
 import TopBar from "../../components/topbar"
 
 import styled from 'styled-components'
-import { BLUE, CREAMY } from "../../components/styled/colors"
-import { H1, H2 } from "../../components/styled/elements"
+import { BLUE, CORAL, CREAMY, RED, YELLOW } from "../../components/styled/colors"
+import { SocialMediaButtonList, WishListButton } from "../../components/buttons"
+import { useContext, useEffect, useState } from "react"
+import { fetchEntry } from "../../utils/contentful.server"
 
 const Background = styled.div`
     background-color: ${BLUE};
     width: 100%;
+    height: 100vh;
+`
+const ContentWrapper = styled.div`
+
 `
 
 const FormWrapper = styled.div`
 background-image: url("https://images.ctfassets.net/gmfhtos0wyy5/YvCul8Y8JgcUimflTGSna/fea15fac1357393bec887ce7733ddc20/LandindTest.svg");
 background-color: ${CREAMY};  
-background-position: center; 
+background-position: left; 
+min-height: 300px;
 background-repeat: no-repeat;
-background-size: cover; 
+background-size: cover;
+border-radius: 10px;
+border-bottom-style: solid;
+@media screen and (min-width: 1000px){
+    min-height: 500px;
+}
 `
 
 const From = styled.div`
     padding: 20px;
-    text-align: right;
-    width: 100%;
+    width: 60%;
+    float:right;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    @media screen and (max-width: 600px){
+        width: 100%;
+        text-align: right;
+        justify-content: space-between;
+    }
+    @media screen and (min-width: 1000px){
+        height: 500px;
+    }
 `
 
 const Quote = styled.h2`
+    
+    color: ${CORAL};
+    text-shadow: 2px 2px ${YELLOW};
+`
+const GameIcon = styled.img`
+    border-radius: 10px;
+    width: 100%;
 
 `
 
+const Description = styled.div`
+position: absolute;
+display: none;
+`
+
+const GameHolder = styled.div`
+    max-width: 30%;
+    margin: 30px 10px;    
+    
+    &:hover ${Description} {
+        margin: 40px auto;
+        display: block;
+        text-align: left;
+    }
+`
+
+const GameListWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+
+
+const GameList = ()=> {
+    const imagesID = 'xyOvx3O275UVS0Pl5pD0t'
+    const [images, setImages] = useState([])
+
+    useEffect(()=>{
+        async function getGamesImages(){
+            const images = await fetchEntry(imagesID);
+            setImages(images.items[0].fields.images)
+            console.log(images.items[0].fields.images[0])
+        }
+        getGamesImages();
+    }, [])
+
+    return (
+    <GameListWrapper>
+        {console.log(images.length)}
+        {images.length && images.map(({fields}) => (
+            <GameHolder>
+                <GameIcon src={fields.image.fields.file.url}/>
+                <Description>{fields.description}</Description>
+            </GameHolder>
+        ))}
+
+    </GameListWrapper>)
+}
 
 const Landing = ()=> (    
             <>
@@ -48,23 +127,16 @@ const Landing = ()=> (
                     <Background>
                         <Container>
                                 <TopBar/>
-                                <FormWrapper>
-                                    <Quote>Play, Create, Subscribe</Quote>
-                                    {/* <Image src = 'https://images.ctfassets.net/gmfhtos0wyy5/YvCul8Y8JgcUimflTGSna/fea15fac1357393bec887ce7733ddc20/LandindTest.svg'/> */}
-                                    <From>
-                                        <Input style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Email'>
-                                        <Icon name='at' />
-                                        <input/>
-                                        </Input>
-                                        <Button animated>
-                                        <Button.Content visible>Wishlist</Button.Content>
-                                        <Button.Content hidden>
-                                            <Icon name='bell' />
-                                        </Button.Content>
-                                        </Button>
-                                    </From>
-
-                                </FormWrapper>
+                                <ContentWrapper>
+                                    <FormWrapper>
+                                        <From>
+                                            <Quote>Play, Create, Subscribe</Quote>
+                                            <WishListButton/>
+                                        </From>
+                                    </FormWrapper>
+                                    <SocialMediaButtonList/>
+                                    <GameList/>
+                                </ContentWrapper>
                         </Container>
                     </Background>
             </>
