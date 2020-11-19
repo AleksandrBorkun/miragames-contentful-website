@@ -9,7 +9,7 @@ export async function fetchEntries(param = {}) {
     if (entries.items) return entries.items
   }
 
-  export async function fetchEntry(id) {
-    const entry = await client.getEntries({'sys.id': id})
-    if (entry) return entry
-  }
+export async function fetchEntry(id) {
+  const entry = await client.getEntries({'sys.id': id})
+  if (entry) return entry
+}

@@ -1,56 +1,165 @@
-import { useEffect, useState } from 'react'
-import {Container} from 'semantic-ui-react'
-import Head from 'next/head'
-import Post from '../components/post'
-import TopBar from '../components/topbar'
-import Game from '../components/game'
-import GamesPagination from '../components/gamesPagination'
-import { fetchEntries } from '../utils/contentful.server'
+import Head from "next/head"
+import { Container, Reveal } from "semantic-ui-react"
 
+import TopBar from "../components/topbar"
 
-function HomePage() {
+import styled from 'styled-components'
+import { BLUE, CORAL, CREAMY, RED, YELLOW } from "../components/styled/colors"
+import { SocialMediaButtonList, WishListButton } from "../components/buttons"
+import { useEffect, useState } from "react"
+import { fetchEntry } from "../utils/contentful.server"
 
-  const [games, setPosts] = useState([])
-  const [page=1, setPage] = useState(1)
-
-  useEffect(() => {
-    async function getGames() {
-      const allGames = await fetchEntries({content_type: 'games'}); //contentTypes.items.filter(item => item.name.toLowerCase() === 'postwithimage')[0].sys.id}) //{content_type: id}
-      setPosts([...allGames])
+const Background = styled.div`
+    background-color: ${BLUE};
+    width: 100%;
+    height: 150vh;
+    @media screen and (max-width: 600px){
+        height: 200vh;
     }
-    getGames()
-  }, [])
+`
+const ContentWrapper = styled.div`
 
-  return (
-    <>
-      <Head>
-        <title>Mira Games - Create With Love</title>
-        <meta property="og:title" content="Mira Games - Create With Love" />
-        <meta property="og:description" 
-            content="Welcome to Mira Games site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://miragamesstudio.com/" />
-        <meta property="og:image" content="https://images.ctfassets.net/gmfhtos0wyy5/1l32ZJBXeT7emjFg6QY6qA/9acd456888f9f089b48c3f6e5e6c98d4/photo_2020-08-06_09-42-08.jpg" />
-        <meta name="description" content={`Welcome to MiraGames site. Here you can find all inforamtion about our games and how to create it. Such as Isolation: Don't touch me, Desert Runner, Racing Tanks. In our blog you'll find info how to use Unity, or any other game engine to work with sprites, materials, shaders, physics, logic, code to create games, how to work with animation and where to search for free assets.`} />
-        <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
-      </Head>  
-      <Container>
-      <TopBar/>
-      {games.length > 0 ?
-        <>
-          <Game title = {games[page - 1].fields.title} 
-                image = {games[page - 1].fields.image.fields.file.url} 
-                releaseDate = {games[page - 1].fields.releaseDate}
-                url = {games[page - 1].fields.url}
-                desc = {games[page - 1].fields.desc}
-                slug = {games[page - 1].fields.slug}
-                />      
-          <GamesPagination count = {games.length} activePage = {page} setPage={setPage}/>
-        </>: ""
-      }
-      </Container>
-    </>
-  )
+`
+
+const FormWrapper = styled.div`
+background-image: url("https://images.ctfassets.net/gmfhtos0wyy5/YvCul8Y8JgcUimflTGSna/fea15fac1357393bec887ce7733ddc20/LandindTest.svg");
+background-color: ${CREAMY};  
+background-position: left; 
+min-height: 300px;
+background-repeat: no-repeat;
+background-size: cover;
+border-radius: 10px;
+border-bottom-style: solid;
+@media screen and (min-width: 1000px){
+    min-height: 500px;
+}
+`
+
+const From = styled.div`
+    padding: 20px;
+    width: 60%;
+    float:right;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    @media screen and (max-width: 600px){
+        width: 100%;
+        text-align: right;
+        justify-content: space-between;
+    }
+    @media screen and (min-width: 1000px){
+        height: 500px;
+    }
+`
+
+const Quote = styled.h2`
+    color: ${CORAL};
+    text-shadow: 2px 2px black;
+`
+
+const GameIcon = styled.img`
+    border-radius: 10px;
+    width: 100%;  
+
+    @media screen and (max-width: 600px){
+        height:100%;
+    }
+`
+
+const Description = styled.h3`
+color: black;
+text-shadow: 0.1px 0.1px ${CORAL};
+`
+
+const GameWrapper = styled.div`
+    max-width: 30%;
+    margin: 30px 10px;    
+
+    @media screen and (max-width: 600px){
+        max-width: 100%;
+        height:200px;
+    }
+`
+
+const GameListWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 600px){
+        display: block;
+    }
+`
+
+const RevealImageMobile = ({img, desc}) => {
+    const [description, setDescription] = useState('')
+    return description ? <Description onMouseOut={() => setDescription('')} >{description}</Description> :
+                 <GameIcon src={img} onMouseEnter={() => setDescription(desc)} />
+        
 }
 
-export default HomePage
+const GameList = () => {
+    const imagesID = 'xyOvx3O275UVS0Pl5pD0t'
+    const [images, setImages] = useState([])
+    const [screenWidth, setWidth] = useState([])
+    const [desc, setDescription] = useState('');
+
+    useEffect(() => {
+        async function getGamesImages() {
+            const images = await fetchEntry(imagesID);
+            setImages(images.items[0].fields.images)
+        }
+        setWidth(window.innerWidth)
+        getGamesImages();
+    }, []);
+
+    return (<>
+        <GameListWrapper>
+            {images.length && images.map(({ fields }, key) => (
+                <GameWrapper key ={key}>
+                    {screenWidth < 600 ? 
+                        <RevealImageMobile img = {fields.image.fields.file.url} desc = {fields.description}/>
+                    :   <GameIcon key={key} src={fields.image.fields.file.url} onMouseOut={() => setDescription('')} onMouseEnter={() => setDescription(fields.description)} />}
+                </GameWrapper>
+            ))}
+        </GameListWrapper>
+            {desc && <Description>{desc}</Description>}
+    </>)
+}
+
+const Landing = () => (
+    <>
+        <Head>
+            <title>Mira Games - Subscribe For The Favorite Games Created With Love</title>
+            <meta property="og:title" content="Mira Games - Subscribe For The Favorite Games Created With Love " />
+            <meta property="og:description"
+                content="Welcome to Mira Games Page. Learn more about our games. Play it and create games with us. Subscribe for new releases of our games and lessons." />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://miragamesstudio.com/" />
+            <meta property="og:image" content="https://images.ctfassets.net/gmfhtos0wyy5/1l32ZJBXeT7emjFg6QY6qA/9acd456888f9f089b48c3f6e5e6c98d4/photo_2020-08-06_09-42-08.jpg" />
+            <meta name="description" content={`Welcome to Mira Games Page. Learn more about our games. Play it and create games with us. Subscribe for new releases of our games and lessons.`} />
+            <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
+        </Head>
+        <Background>
+            <Container>
+                <TopBar />
+                <ContentWrapper>
+                    <FormWrapper>
+                        <From>
+                            <Quote>Play, Create, Subscribe</Quote>
+                            <WishListButton />
+                        </From>
+                    </FormWrapper>
+                    <SocialMediaButtonList />
+                    <GameList />
+                </ContentWrapper>
+            </Container>
+        </Background>
+    </>
+)
+
+
+
+
+export default Landing;
+

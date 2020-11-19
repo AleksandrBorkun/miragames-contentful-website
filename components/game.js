@@ -2,7 +2,6 @@ import { Card, Image, Icon, Input, Button, Grid, GridColumn, Checkbox} from "sem
 import React, { Component, useState } from 'react'
 import ReactMarkdown  from 'react-markdown'
 import { AddToWishlist } from '../utils/fb_init'
-import DonateButton from "./donateButton";
 
 
 function  Game (prop){
