@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Container, Reveal } from "semantic-ui-react"
+import { Container } from "semantic-ui-react"
 
 import TopBar from "../components/topbar"
 
@@ -10,15 +10,15 @@ import { useEffect, useState } from "react"
 import { fetchEntry } from "../utils/contentful.server"
 
 const Background = styled.div`
-    background-color: ${BLUE};
+    background-color: ${CORAL};
     width: 100%;
     height: 150vh;
     @media screen and (max-width: 600px){
         height: 200vh;
     }
 `
-const ContentWrapper = styled.div`
 
+const ContentWrapper = styled.div`
 `
 
 const FormWrapper = styled.div`
@@ -157,8 +157,6 @@ const Landing = () => (
         </Background>
     </>
 )
-
-
 
 
 export default Landing;
