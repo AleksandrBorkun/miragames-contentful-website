@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {useState, useEffect} from 'react'
+import { YELLOW } from './styled/colors';
 
 export const FormWrapper = styled.div`
 height: 500px;
