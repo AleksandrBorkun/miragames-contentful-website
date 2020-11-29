@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import { Image, Container } from "semantic-ui-react"
 
 import styled from 'styled-components'
-import { fetchEntry } from '../../utils/contentful.server'
+import { fetchEntry } from '../../src/contentful.server'
 import TopBar from '../../components/topbar'
 
 const ImageWrapper = styled.div`

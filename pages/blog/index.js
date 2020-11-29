@@ -4,7 +4,7 @@ import Head from 'next/head'
 import TopBar from '../../components/topbar'
 import BlogArticlesPreview from '../../components/blogAriclesPreview'
 import GamesPagination from '../../components/gamesPagination'
-import { fetchEntries } from '../../utils/contentful.server'
+import { fetchEntries } from '../../src/contentful.server'
 
 
 function HomePage() {
