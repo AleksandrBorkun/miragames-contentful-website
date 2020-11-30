@@ -3,7 +3,7 @@ import TopBar from "../components/topbar"
 
 import styled from 'styled-components'
 import { renderContentElement } from '../src/renderer'
-import { YELLOW } from "../components/styled/colors"
+import { DARK, YELLOW } from "../components/styled/colors"
 import { SocialMediaButtonList, WishListButton } from "../components/buttons"
 import { useEffect, useState } from "react"
 import { fetchEntry } from "../src/contentful.server"
@@ -11,9 +11,13 @@ import { CopyrightTxt, H2 } from "../components/styled/elements"
 import { FormWrapper } from "../components/cards"
 
 const Background = styled.div`
+    color: ${DARK};
     background-color: white;
     font-family: Arial,Helvetica,sans-serif;
     width: 100%;
+    @media only screen and (max-width: 768px){
+        overflow-x:hidden;
+    }
 `
 const ContentWrapper = styled.div`
     margin: 0 4px;

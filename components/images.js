@@ -55,7 +55,7 @@ export const MediaHolder = ({id}) => {
         {images.length && images.map(({fields}) =>{
             return (<MediaSlideHolder>{fields.title.indexOf('youtube') !== -1 ?
                 <YouTube videoId={fields.description} opts={opts}/> :
-                <Image src = {fields.image.fields.file.url}/>}
+                <Image src = {fields.image.fields.file.url} alt={fields.description}/>}
             </MediaSlideHolder>)
         })}
     </Carousel>)

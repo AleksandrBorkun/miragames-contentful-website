@@ -1,6 +1,6 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import Router from 'next/router'
-import { Input, Menu, Grid } from 'semantic-ui-react'
+import {  Menu  } from 'semantic-ui-react'
 import { Title } from './styled/elements'
 
 const NavigationStyles = {position: 'fixed',
@@ -52,7 +52,7 @@ export default class TopBar extends Component {
             </Menu.Item>
           </Menu.Menu> */}
       </Menu>
-      <Title> Mira Games Studio</Title></>
+      <Title> MIRAGAMES STUDIO</Title></>
     )
   }
 }
