@@ -1,28 +1,29 @@
 import { useState } from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
-import { AddToWishlist, SaveDonateTransiction } from '../utils/fb_init';
+import { AddToWishlist, SaveDonateTransiction } from '../src/fb_init';
 
 import Router from 'next/router'
 
 import styled from 'styled-components'
 import { Input, Icon, Button, Checkbox } from 'semantic-ui-react';
+import { DARK } from './styled/colors';
 
 const WishlistButtonWrapper = styled.div`
-@media screen and (max-width: 600px){
+  align-items: flex-end;
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
+  justify-content: space-between;
 `
 
 const SocialMediaHolder = styled.div`
-display: flex;
-justify-content: space-between;
-margin: 20px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+`
 
-@media screen and (max-width: 600px){
-  flex-direction: column;
-  height: 130px;
-}
+const Link = styled.a`
+  color: ${DARK};
 `
 
 const CLIENT_ID = "AY8Alnpc8yHHSJZ1rIBRbFw7JN7t6FOrmgQ0Ieqj6OHs6u1ltAAJSDlKhwJi5B3DJ9Mxi-NvRErr9qlL";
@@ -76,11 +77,11 @@ export const WishListButton = ({slug = 'MiraGames'}) => {
 
   return (
     <WishlistButtonWrapper>
-      <Input style={{ verticalAlign: "middle" }} iconPosition='left' placeholder='Email'>
+      <Input style={{ verticalAlign: "middle", width: '100%' }} iconPosition='left' placeholder='Email'>
         <Icon name='at' />
         <input onChange={onEmailChanged} value={email}/>
       </Input>
-      <Button animated onClick={onWishlisted}>
+      <Button animated onClick={onWishlisted} style={{margin: '20px', color: 'white', backgroundColor: DARK}}>
         <Button.Content visible>Wishlist</Button.Content>
         <Button.Content hidden>
           <Icon name='bell' />
@@ -111,9 +112,9 @@ export const SocialMediaButtonList = () => {
   return (
     <SocialMediaHolder>
       {socialMediaConfig.map(({ name, link }) => (
-        <Button key={name} color={name} onClick={() => window.open(link, '_ blank')}>
-          <Icon name={name} /> {name[0].toUpperCase() + name.substring(1)}
-        </Button>
+        // <Button key={name} color={name} onClick={() => window.open(link, '_ blank')}>
+          <Link key={name} href={link}><Icon name={name}/></Link> //{name[0].toUpperCase() + name.substring(1)}
+        // </Button>
       ))}
     </SocialMediaHolder>
   )

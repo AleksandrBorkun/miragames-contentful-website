@@ -3,6 +3,12 @@ import Router from 'next/router'
 import { Input, Menu, Grid } from 'semantic-ui-react'
 import { Title } from './styled/elements'
 
+const NavigationStyles = {position: 'fixed',
+top: 0,
+width: '100%',
+backgroundColor: 'whitesmoke',
+margin: 0}
+
 export default class TopBar extends Component {
 
   handleItemClick = (e, { name }) => {
@@ -20,7 +26,7 @@ export default class TopBar extends Component {
     const { activeItem, breadcrumb } = this.props
 
     return (<>
-      <Menu secondary>
+      <Menu secondary style={NavigationStyles}>
         <Menu.Item
           name='home'
           active={!activeItem && !breadcrumb}
@@ -46,7 +52,7 @@ export default class TopBar extends Component {
             </Menu.Item>
           </Menu.Menu> */}
       </Menu>
-      <Title> Mira Games - Create With Love</Title></>
+      <Title> Mira Games Studio</Title></>
     )
   }
 }

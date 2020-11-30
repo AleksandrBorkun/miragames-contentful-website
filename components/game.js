@@ -1,7 +1,7 @@
 import { Card, Image, Icon, Input, Button, Grid, GridColumn, Checkbox} from "semantic-ui-react"
 import React, { Component, useState } from 'react'
 import ReactMarkdown  from 'react-markdown'
-import { AddToWishlist } from '../utils/fb_init'
+import { AddToWishlist } from '../src/fb_init'
 
 
 function  Game (prop){
