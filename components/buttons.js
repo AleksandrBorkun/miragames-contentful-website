@@ -112,9 +112,7 @@ export const SocialMediaButtonList = () => {
   return (
     <SocialMediaHolder>
       {socialMediaConfig.map(({ name, link }) => (
-        // <Button key={name} color={name} onClick={() => window.open(link, '_ blank')}>
-          <Link key={name} href={link}><Icon name={name}/></Link> //{name[0].toUpperCase() + name.substring(1)}
-        // </Button>
+          <Link key={name} href={link} target='_blank'><Icon name={name}/></Link>
       ))}
     </SocialMediaHolder>
   )
