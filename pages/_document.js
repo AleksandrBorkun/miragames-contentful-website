@@ -1,10 +1,11 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, {Html, Head, Main, NextScript } from 'next/document'
 import '../src/fb_init'
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      // added <Html >
+      <Html>
         <Head>
         <link 
           rel = "stylesheet" 
@@ -16,7 +17,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
