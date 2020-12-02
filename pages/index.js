@@ -67,7 +67,7 @@ const Landing = () => {
                     })}
                     <FormWrapper>
                         <From>
-                            <H2 center color={YELLOW} size={'3'}>Wishlist</H2>
+                            <H2 center color={YELLOW} size={'3'}>SUBSCRIBE</H2>
                             <WishListButton />
                         </From>
                     </FormWrapper>

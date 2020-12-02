@@ -8,6 +8,14 @@ import styled from 'styled-components'
 import { Input, Icon, Button, Checkbox } from 'semantic-ui-react';
 import { DARK } from './styled/colors';
 
+
+const GooglePlayBtn = styled.label`
+  font-size: 2rem;
+  margin: 20px;
+  align-self: center;
+`
+
+
 const WishlistButtonWrapper = styled.div`
   align-items: flex-end;
   width: 100%;
@@ -77,6 +85,11 @@ export const WishListButton = ({slug = 'MiraGames'}) => {
 
   return (
     <WishlistButtonWrapper>
+      <GooglePlayBtn>
+        <Link href={'https://play.google.com/store/apps/details?id=com.miragamesstudio.DontTouchMeIsolation'} target='_blank'>
+          <Icon name={'google play'}/>Play Now
+        </Link>
+      </GooglePlayBtn>
       <Input style={{ verticalAlign: "middle", width: '100%' }} iconPosition='left' placeholder='Email'>
         <Icon name='at' />
         <input onChange={onEmailChanged} value={email}/>
@@ -107,6 +120,9 @@ export const SocialMediaButtonList = () => {
     {
       name: 'instagram',
       link: 'https://www.instagram.com/mira.games.studio/'
+    },{
+      name: 'google play',
+      link: 'https://play.google.com/store/apps/details?id=com.miragamesstudio.DontTouchMeIsolation'
     }
   ]
   return (

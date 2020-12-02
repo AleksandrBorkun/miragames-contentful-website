@@ -7,6 +7,7 @@ const NavigationStyles = {position: 'fixed',
 top: 0,
 width: '100%',
 backgroundColor: 'whitesmoke',
+zIndex: 200,
 margin: 0}
 
 export default class TopBar extends Component {
@@ -26,7 +27,7 @@ export default class TopBar extends Component {
     const { activeItem, breadcrumb } = this.props
 
     return (<>
-      <Menu secondary style={NavigationStyles}>
+      {/* <Menu secondary style={NavigationStyles}>
         <Menu.Item
           name='home'
           active={!activeItem && !breadcrumb}
@@ -46,12 +47,7 @@ export default class TopBar extends Component {
           name={breadcrumb}
           active
         />}
-        {/* <Menu.Menu position='right'>
-            <Menu.Item>
-              <Input icon='search' placeholder='Search...' />
-            </Menu.Item>
-          </Menu.Menu> */}
-      </Menu>
+      </Menu>  */}
       <Title> MIRAGAMES STUDIO</Title></>
     )
   }
