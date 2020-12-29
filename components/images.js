@@ -9,12 +9,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const ImageHolder = styled.div`
     display : flex;
     width: 100%;
-    background-image: radial-gradient(white, ${CREAMY});
+    background-color: white;
     justify-content: center;
 `
 
 const Image = styled.img`
-
+    height: 500px;
 `
 
 const MediaSlideHolder = styled.div`

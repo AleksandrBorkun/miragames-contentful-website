@@ -2,8 +2,11 @@ import styled from 'styled-components'
 import { H2, H3 } from './styled/elements'
 
 const QouteWrapper = styled.div`
-    ${({bgColor})=>`
-    background-color: ${bgColor};
+    ${({bgColor})=> bgColor ? `
+        background-color: ${bgColor};
+    ` :
+    `
+        background-image: linear-gradient(white, #2CB1BF, white);
     `}
     display: flex;
     justify-content: center;
