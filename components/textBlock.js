@@ -17,6 +17,8 @@ const QouteWrapper = styled.div`
     margin: 20px 0;
 `
 
+export const DescriptionForImage = styled.div``
+
 export const Quote = ({title, author, color, size, bgColor}) =>{
     return (
     <QouteWrapper bgColor={bgColor}>

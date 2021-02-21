@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import ReactMarkdown from 'react-markdown'
-import { Image, Container } from "semantic-ui-react"
+import { Container } from "semantic-ui-react"
 
 import styled from 'styled-components'
 import { fetchEntry } from '../../src/contentful.server'
 import TopBar from '../../components/topbar'
+import { renderContentElement } from '../../src/renderer'
+import { H2 } from '../../components/styled/elements'
 
 const ImageWrapper = styled.div`
     width: 80%,
@@ -52,21 +53,12 @@ const BlogArticle = () => {
 }
 
 const ArticleContent = ({ title, description, content, cover }) => (<main>
-    <h1>{title}</h1>
-    <h3>{description}</h3>
-    {/* <ImageWrapper>
-        <Image  src={cover ? cover.fields.file.url : ''}  fluid={true} />
-    </ImageWrapper> */}
+    <H2 center>{title}</H2>
     {content && <ContentHolder>
         {content?.map((block, key) => {
-            return block.sys.contentType.sys.id === 'paragraph' ?
-                <ReactMarkdown key={key} source={block.fields.content} />
-                :
-                <Image key={key} src={block.fields.image.fields.file.url} fluid={true} />
+            return renderContentElement(block);
         })}
     </ContentHolder>}
-
-
 </main>)
 
 

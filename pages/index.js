@@ -1,14 +1,14 @@
 import Head from "next/head"
-import TopBar from "../components/topbar"
 
 import styled from 'styled-components'
 import { renderContentElement } from '../src/renderer'
 import { DARK, YELLOW } from "../components/styled/colors"
 import { SocialMediaButtonList, WishListButton } from "../components/buttons"
 import { useEffect, useState } from "react"
-import { fetchEntry } from "../src/contentful.server"
-import { CopyrightTxt, H2 } from "../components/styled/elements"
+import { CopyrightTxt, H2, Title } from "../components/styled/elements"
 import { FormWrapper } from "../components/cards"
+
+import axios from 'axios'
 
 const Background = styled.div`
     color: ${DARK};
@@ -39,8 +39,9 @@ const Landing = () => {
     const LandingPageId = "3FbipyucUazwSXrtEHO03n";
     useEffect(() => {
         async function getPageContent() {
-            const resp = await fetchEntry(LandingPageId);
-            setContent(resp.items[0].fields.content)
+            // const resp = await fetchEntry(LandingPageId);
+            const resp = await axios.get(`api/hello?id=${LandingPageId}`)
+            setContent(resp.data.items[0].fields.content)
         }
         getPageContent();
     }, []);
@@ -59,7 +60,7 @@ const Landing = () => {
                 <meta name="google-site-verification" content="vecCZaVit4ZbfHtDB6Fm88WWHtOZ6Rs-zRCxEkYr2vs" />
             </Head>
             <Background>
-                <TopBar />
+                <Title> MIRAGAMES STUDIO</Title>
                 <ContentWrapper>
                     {content.length && content.map(item => {
                         // console.log(item)

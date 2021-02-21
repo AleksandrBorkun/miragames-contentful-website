@@ -15,7 +15,7 @@ export default class TopBar extends Component {
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
     if (name === 'home' && window.location.pathname !== '/') {
-      Router.push('/')
+      window.open('/', 'blank')
     } else if (name === 'blog' && window.location.pathname !== '/about') {
       Router.push('/blog')
     } else if (name === 'games' && window.location.pathname !== '/about') {
@@ -27,12 +27,11 @@ export default class TopBar extends Component {
     const { activeItem, breadcrumb } = this.props
 
     return (<>
-      {/* <Menu secondary style={NavigationStyles}>
+      <Menu secondary style={NavigationStyles}>
         <Menu.Item
           name='home'
           active={!activeItem && !breadcrumb}
-          onClick={this.handleItemClick}
-        />
+          onClick={this.handleItemClick}/>
         <Menu.Item
           name='blog'
           active={activeItem === 'blog'}
@@ -47,7 +46,7 @@ export default class TopBar extends Component {
           name={breadcrumb}
           active
         />}
-      </Menu>  */}
+      </Menu> 
       <Title> MIRAGAMES STUDIO</Title></>
     )
   }

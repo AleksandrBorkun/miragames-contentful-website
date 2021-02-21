@@ -5,12 +5,18 @@ import styled from 'styled-components'
 import { fetchEntry } from '../src/contentful.server'
 import { CREAMY } from './styled/colors'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { DescriptionForImage } from './textBlock'
 
-const ImageHolder = styled.div`
+const LogoHolder = styled.div`
     display : flex;
     width: 100%;
     background-color: white;
     justify-content: center;
+`
+
+const ImageHolder = styled.div`
+    width: 100%;
+    background-color: white;
 `
 
 const Image = styled.img`
@@ -26,12 +32,20 @@ const MediaSlideHolder = styled.div`
     }
 
 `
-
+export const ImageWithDescription = ({description, src, alt})=>{
+    console.log(src)
+    return (
+    <ImageHolder>
+        <DescriptionForImage>{description}</DescriptionForImage>
+        <Image src={src} alt={alt || description}/>
+    </ImageHolder>
+    )
+}
 
 export const ImageWithLogo =({image, description})=>(
-<ImageHolder>
+<LogoHolder>
     <Image src={image.fields.file.url} alt={description}/>
-</ImageHolder>)
+</LogoHolder>)
 
 export const MediaHolder = ({id}) => {
     const [images, setImages] = useState([])
@@ -39,8 +53,7 @@ export const MediaHolder = ({id}) => {
         height: 500-40,
         width: window.innerWidth,
         playerVars: {
-          // https://developers.google.com/youtube/player_parameters
-          autoplay: 1,
+          autoplay: 0,
         },
       };
 
