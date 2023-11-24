@@ -17,6 +17,7 @@ export const getStaticProps = async () => {
     "fields.slug": "about-ob-game-dev",
   });
 
+  console.log(results);
   const { content, metaHead = {} } = results.items[0].fields;
   return {
     props: { content, metaHead },
