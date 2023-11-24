@@ -26,7 +26,12 @@ const Logo = ({ mobile }) => (
         minWidth: "140px",
       }}
     >
-      <Avatar alt="MiraStudioKids Logo" src="../icon.ico" />
+      <Avatar
+        alt="MiraStudioKids Logo"
+        src="../icon.ico"
+        width="40px"
+        height="40px"
+      />
       <Title> OB Game Dev </Title>
     </Box>
   </Link>
