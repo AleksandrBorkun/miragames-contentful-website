@@ -2,7 +2,7 @@ import MetaHead from "components/MetaHead";
 import { getEntries } from "contentful/client";
 import { renderComponent } from "contentful/utils";
 
-const Page = ({ title, content, metaHead }) => {
+const About = ({ title, content, metaHead }) => {
   return (
     <>
       <MetaHead />
@@ -11,16 +11,16 @@ const Page = ({ title, content, metaHead }) => {
   );
 };
 
-export const getServerSideProps = async (props) => {
-  const articles = await getEntries({
+export const getStaticProps = async () => {
+  const results = await getEntries({
     content_type: "page",
-    "fields.slug": "ob-game-dev",
+    "fields.slug": "about-ob-game-dev",
   });
 
-  const { content, metaHead = {} } = articles.items[0].fields;
+  const { content, metaHead = {} } = results.items[0].fields;
   return {
     props: { content, metaHead },
   };
 };
 
-export default Page;
+export default About;

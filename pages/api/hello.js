@@ -1,7 +1,5 @@
-import { fetchEntry } from "../../src/contentful.server"
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default async (req, res) => {
-    const resp = await fetchEntry(req.query.id)
-    res.status(200).json(resp)
-  }
-  
+export default function handler(req, res) {
+  res.status(200).json({ name: 'John Doe' })
+}

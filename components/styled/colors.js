@@ -1,5 +1,0 @@
-export const CREAMY = '#F2EAD0'
-export const YELLOW = '#F2C335'
-export const GREEN = '#6BBF98'
-export const BLUE = '#2CB1BF'
-export const DARK = '#332A40'
