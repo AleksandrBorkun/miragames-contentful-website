@@ -23,7 +23,7 @@ export default function Document() {
         {!isLocal && (
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-YLCQZMLXKP"
+            src="https://www.googletagmanager.com/gtag/js?id=G-FGXCZ8WMB8"
           ></script>
         )}
         {!isLocal && (
@@ -34,7 +34,7 @@ export default function Document() {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
-              gtag('config', 'G-YLCQZMLXKP');`,
+              gtag('config', 'G-FGXCZ8WMB8');`,
             }}
           />
         )}
@@ -52,13 +52,13 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
-        {!isLocal && (
+        {/* {!isLocal && (
           <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3654540844516810"
             crossOrigin="anonymous"
           ></script>
-        )}
+        )} */}
       </Head>
       <body>
         <Main />
